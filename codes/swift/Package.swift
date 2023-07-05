@@ -24,11 +24,13 @@ let package = Package(
         .executable(name: "deque", targets: ["deque"]),
         .executable(name: "linkedlist_deque", targets: ["linkedlist_deque"]),
         .executable(name: "array_deque", targets: ["array_deque"]),
-        // chapter_binary_search
-        .executable(name: "binary_search", targets: ["binary_search"]),
         // chapter_hashing
         .executable(name: "hash_map", targets: ["hash_map"]),
         .executable(name: "array_hash_map", targets: ["array_hash_map"]),
+        .executable(name: "hash_map_chaining", targets: ["hash_map_chaining"]),
+        .executable(name: "hash_map_open_addressing", targets: ["hash_map_open_addressing"]),
+        .executable(name: "simple_hash", targets: ["simple_hash"]),
+        .executable(name: "built_in_hash", targets: ["built_in_hash"]),
         // chapter_tree
         .executable(name: "binary_tree", targets: ["binary_tree"]),
         .executable(name: "binary_tree_bfs", targets: ["binary_tree_bfs"]),
@@ -43,14 +45,18 @@ let package = Package(
         .executable(name: "graph_bfs", targets: ["graph_bfs"]),
         .executable(name: "graph_dfs", targets: ["graph_dfs"]),
         // chapter_searching
+        .executable(name: "binary_search", targets: ["binary_search"]),
+        .executable(name: "binary_search_edge", targets: ["binary_search_edge"]),
         .executable(name: "two_sum", targets: ["two_sum"]),
         .executable(name: "linear_search", targets: ["linear_search"]),
         .executable(name: "hashing_search", targets: ["hashing_search"]),
         // chapter_sorting
+        .executable(name: "selection_sort", targets: ["selection_sort"]),
         .executable(name: "bubble_sort", targets: ["bubble_sort"]),
         .executable(name: "insertion_sort", targets: ["insertion_sort"]),
         .executable(name: "quick_sort", targets: ["quick_sort"]),
         .executable(name: "merge_sort", targets: ["merge_sort"]),
+        .executable(name: "heap_sort", targets: ["heap_sort"]),
         .executable(name: "bucket_sort", targets: ["bucket_sort"]),
         .executable(name: "counting_sort", targets: ["counting_sort"]),
         .executable(name: "radix_sort", targets: ["radix_sort"]),
@@ -86,11 +92,13 @@ let package = Package(
         .executableTarget(name: "deque", path: "chapter_stack_and_queue", sources: ["deque.swift"]),
         .executableTarget(name: "linkedlist_deque", path: "chapter_stack_and_queue", sources: ["linkedlist_deque.swift"]),
         .executableTarget(name: "array_deque", path: "chapter_stack_and_queue", sources: ["array_deque.swift"]),
-        // chapter_binary_search
-        .executableTarget(name: "binary_search", path: "chapter_binary_search", sources: ["binary_search.swift"]),
         // chapter_hashing
         .executableTarget(name: "hash_map", dependencies: ["utils"], path: "chapter_hashing", sources: ["hash_map.swift"]),
-        .executableTarget(name: "array_hash_map", path: "chapter_hashing", sources: ["array_hash_map.swift"]),
+        .executableTarget(name: "array_hash_map", dependencies: ["utils"], path: "chapter_hashing", sources: ["array_hash_map.swift"]),
+        .executableTarget(name: "hash_map_chaining", dependencies: ["utils"], path: "chapter_hashing", sources: ["hash_map_chaining.swift"]),
+        .executableTarget(name: "hash_map_open_addressing", dependencies: ["utils"], path: "chapter_hashing", sources: ["hash_map_open_addressing.swift"]),
+        .executableTarget(name: "simple_hash", path: "chapter_hashing", sources: ["simple_hash.swift"]),
+        .executableTarget(name: "built_in_hash", dependencies: ["utils"], path: "chapter_hashing", sources: ["built_in_hash.swift"]),
         // chapter_tree
         .executableTarget(name: "binary_tree", dependencies: ["utils"], path: "chapter_tree", sources: ["binary_tree.swift"]),
         .executableTarget(name: "binary_tree_bfs", dependencies: ["utils"], path: "chapter_tree", sources: ["binary_tree_bfs.swift"]),
@@ -105,14 +113,18 @@ let package = Package(
         .executableTarget(name: "graph_bfs", dependencies: ["utils", "graph_adjacency_list_target"], path: "chapter_graph", sources: ["graph_bfs.swift"]),
         .executableTarget(name: "graph_dfs", dependencies: ["utils", "graph_adjacency_list_target"], path: "chapter_graph", sources: ["graph_dfs.swift"]),
         // chapter_searching
+        .executableTarget(name: "binary_search", path: "chapter_searching", sources: ["binary_search.swift"]),
+        .executableTarget(name: "binary_search_edge", path: "chapter_searching", sources: ["binary_search_edge.swift"]),
         .executableTarget(name: "two_sum", path: "chapter_searching", sources: ["two_sum.swift"]),
         .executableTarget(name: "linear_search", dependencies: ["utils"], path: "chapter_searching", sources: ["linear_search.swift"]),
         .executableTarget(name: "hashing_search", dependencies: ["utils"], path: "chapter_searching", sources: ["hashing_search.swift"]),
         // chapter_sorting
+        .executableTarget(name: "selection_sort", path: "chapter_sorting", sources: ["selection_sort.swift"]),
         .executableTarget(name: "bubble_sort", path: "chapter_sorting", sources: ["bubble_sort.swift"]),
         .executableTarget(name: "insertion_sort", path: "chapter_sorting", sources: ["insertion_sort.swift"]),
         .executableTarget(name: "quick_sort", path: "chapter_sorting", sources: ["quick_sort.swift"]),
         .executableTarget(name: "merge_sort", path: "chapter_sorting", sources: ["merge_sort.swift"]),
+        .executableTarget(name: "heap_sort", path: "chapter_sorting", sources: ["heap_sort.swift"]),
         .executableTarget(name: "bucket_sort", path: "chapter_sorting", sources: ["bucket_sort.swift"]),
         .executableTarget(name: "counting_sort", path: "chapter_sorting", sources: ["counting_sort.swift"]),
         .executableTarget(name: "radix_sort", path: "chapter_sorting", sources: ["radix_sort.swift"]),

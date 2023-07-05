@@ -73,7 +73,7 @@ class MyList {
 
   /* 列表扩容 */
   void extendCapacity() {
-    // 新建一个长度为 _capacity * _extendRatio 的数组
+    // 新建一个长度为原数组 _extendRatio 倍的新数组
     final _newNums = List.filled(_capacity * _extendRatio, 0);
     // 将原数组拷贝到新数组
     List.copyRange(_newNums, 0, _nums);
@@ -94,7 +94,7 @@ class MyList {
 }
 
 /* Driver Code */
-int main() {
+void main() {
   /* 初始化列表 */
   MyList list = MyList();
   /* 尾部添加元素 */
@@ -103,11 +103,12 @@ int main() {
   list.add(2);
   list.add(5);
   list.add(4);
-  print('列表 list = ${list.toArray()}，容量 =  ${list.capacity()}，长度 = ${list.size()}');
+  print(
+      '列表 list = ${list.toArray()} ，容量 = ${list.capacity()} ，长度 = ${list.size()}');
 
   /* 中间插入元素 */
   list.insert(3, 6);
-  print('在索引 3 处插入数字 6 ，得到 list =  ${list.toArray()}');
+  print('在索引 3 处插入数字 6 ，得到 list = ${list.toArray()}');
 
   /* 删除元素 */
   list.remove(3);
@@ -115,18 +116,17 @@ int main() {
 
   /* 访问元素 */
   int num = list.get(1);
-  print('访问索引 1 处的元素，得到 num =  $num');
+  print('访问索引 1 处的元素，得到 num = $num');
 
   /* 更新元素 */
   list.set(1, 0);
-  print('将索引 1 处的元素更新为 0 ，得到 list =  ${list.toArray()}');
+  print('将索引 1 处的元素更新为 0 ，得到 list = ${list.toArray()}');
 
   /* 测试扩容机制 */
   for (var i = 0; i < 10; i++) {
     // 在 i = 5 时，列表长度将超出列表容量，此时触发扩容机制
     list.add(i);
   }
-  print('扩容后的列表 list = ${list.toArray()}，容量 = ${list.capacity()}  ，长度 = ${list.size()}');
-  
-  return 0;
+  print(
+      '扩容后的列表 list = ${list.toArray()} ，容量 = ${list.capacity()} ，长度 = ${list.size()}');
 }

@@ -14,7 +14,7 @@ class MaxHeap:
     """大顶堆"""
 
     def __init__(self, nums: list[int]):
-        """构造方法"""
+        """构造方法，根据输入列表建堆"""
         # 将列表元素原封不动添加进堆
         self.max_heap = nums
         # 堆化除叶节点以外的其他所有节点
@@ -35,8 +35,7 @@ class MaxHeap:
 
     def swap(self, i: int, j: int):
         """交换元素"""
-        a, b = self.max_heap[i], self.max_heap[j]
-        self.max_heap[i], self.max_heap[j] = b, a
+        self.max_heap[i], self.max_heap[j] = self.max_heap[j], self.max_heap[i]
 
     def size(self) -> int:
         """获取堆大小"""

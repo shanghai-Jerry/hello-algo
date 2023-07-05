@@ -53,11 +53,11 @@ fn quadratic(n: i32) i32 {
 // 平方阶（冒泡排序）
 fn bubbleSort(nums: []i32) i32 {
     var count: i32 = 0;  // 计数器 
-    // 外循环：待排序元素数量为 n-1, n-2, ..., 1
+    // 外循环：未排序区间为 [0, i]
     var i: i32 = @intCast(i32, nums.len ) - 1;
     while (i > 0) : (i -= 1) {
         var j: usize = 0;
-        // 内循环：冒泡操作
+        // 内循环：将未排序区间 [0, i] 中的最大元素交换至该区间的最右端 
         while (j < i) : (j += 1) {
             if (nums[j] > nums[j + 1]) {
                 // 交换 nums[j] 与 nums[j + 1]
@@ -153,7 +153,7 @@ pub fn main() !void {
 
     count = quadratic(n);
     std.debug.print("平方阶的计算操作数量 = {}\n", .{count});
-    for (nums) |*num, i| {
+    for (&nums, 0..) |*num, i| {
         num.* = n - @intCast(i32, i);  // [n,n-1,...,2,1]
     }
     count = bubbleSort(&nums);
@@ -174,5 +174,7 @@ pub fn main() !void {
 
     count = factorialRecur(n);
     std.debug.print("阶乘阶（递归实现）的计算操作数量 = {}\n", .{count});
+
+    _ = try std.io.getStdIn().reader().readByte();
 }
 

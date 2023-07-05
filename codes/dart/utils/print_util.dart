@@ -16,6 +16,14 @@ class Trunk {
   Trunk(this.prev, this.str);
 }
 
+void printMatrix(List<List<int>> matrix) {
+  print("[");
+  for (List<int> row in matrix) {
+    print("  $row,");
+  }
+  print("]");
+}
+
 void printLinkedList(ListNode? head) {
   List<String> list = [];
 
@@ -38,12 +46,12 @@ void printTree(TreeNode? root, [Trunk? prev = null, bool isLeft = false]) {
   printTree(root.right, trunk, true);
 
   if (prev == null) {
-    trunk.str = '---';
+    trunk.str = '———';
   } else if (isLeft) {
-    trunk.str = '/---';
+    trunk.str = '/———';
     prev_str = '   |';
   } else {
-    trunk.str = '\\---';
+    trunk.str = '\\———';
     prev.str = prev_str;
   }
   showTrunks(trunk);

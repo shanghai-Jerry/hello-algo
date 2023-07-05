@@ -16,7 +16,9 @@
 
 ## 无重复的情况
 
-!!! question "输入一个整数数组，数组中不包含重复元素，返回所有可能的排列。"
+!!! question
+
+    输入一个整数数组，数组中不包含重复元素，返回所有可能的排列。
 
 **从回溯算法的角度看，我们可以把生成排列的过程想象成一系列选择的结果**。假设输入数组为 $[1, 2, 3]$ ，如果我们先选择 $1$ 、再选择 $3$ 、最后选择 $2$ ，则获得排列 $[1, 3, 2]$ 。回退表示撤销一个选择，之后继续尝试其他选择。
 
@@ -55,7 +57,7 @@
 === "Go"
 
     ```go title="permutations_i.go"
-    [class]{}-[func]{backtrack}
+    [class]{}-[func]{backtrackI}
 
     [class]{}-[func]{permutationsI}
     ```
@@ -108,6 +110,14 @@
     [class]{}-[func]{permutationsI}
     ```
 
+=== "Dart"
+
+    ```dart title="permutations_i.dart"
+    [class]{}-[func]{backtrack}
+
+    [class]{}-[func]{permutationsI}
+    ```
+
 需要重点关注的是，我们引入了一个布尔型数组 `selected` ，它的长度与输入数组长度相等，其中 `selected[i]` 表示 `choices[i]` 是否已被选择。我们利用 `selected` 避免某个元素被重复选择，从而实现剪枝。
 
 如下图所示，假设我们第一轮选择 1 ，第二轮选择 3 ，第三轮选择 2 ，则需要在第二轮剪掉元素 1 的分支，在第三轮剪掉元素 1, 3 的分支。**从本质上理解，此剪枝操作可将搜索空间大小从 $O(n^n)$ 降低至 $O(n!)$** 。
@@ -116,7 +126,9 @@
 
 ## 考虑重复的情况
 
-!!! question "输入一个整数数组，**数组中可能包含重复元素**，返回所有不重复的排列。"
+!!! question
+
+    输入一个整数数组，**数组中可能包含重复元素**，返回所有不重复的排列。
 
 假设输入数组为 $[1, 1, 2]$ 。为了方便区分两个重复的元素 $1$ ，接下来我们将第二个元素记为 $\hat{1}$ 。如下图所示，上述方法生成的排列有一半都是重复的。
 
@@ -157,7 +169,7 @@
 === "Go"
 
     ```go title="permutations_ii.go"
-    [class]{}-[func]{backtrack}
+    [class]{}-[func]{backtrackII}
 
     [class]{}-[func]{permutationsII}
     ```
@@ -205,6 +217,14 @@
 === "Zig"
 
     ```zig title="permutations_ii.zig"
+    [class]{}-[func]{backtrack}
+
+    [class]{}-[func]{permutationsII}
+    ```
+
+=== "Dart"
+
+    ```dart title="permutations_ii.dart"
     [class]{}-[func]{backtrack}
 
     [class]{}-[func]{permutationsII}

@@ -301,6 +301,12 @@
 
     ```
 
+=== "Dart"
+
+    ```dart title="heap.dart"
+    // Dart 未提供内置 Heap 类
+    ```
+
 ## 堆的实现
 
 下文实现的是大顶堆。若要将其转换为小顶堆，只需将所有大小逻辑判断取逆（例如，将 $\geq$ 替换为 $\leq$ ）。感兴趣的读者可以自行实现。
@@ -417,6 +423,16 @@
     [class]{MaxHeap}-[func]{parent}
     ```
 
+=== "Dart"
+
+    ```dart title="my_heap.dart"
+    [class]{MaxHeap}-[func]{_left}
+
+    [class]{MaxHeap}-[func]{_right}
+
+    [class]{MaxHeap}-[func]{_parent}
+    ```
+
 ### 访问堆顶元素
 
 堆顶元素即为二叉树的根节点，也就是列表的首个元素。
@@ -481,6 +497,12 @@
     [class]{MaxHeap}-[func]{peek}
     ```
 
+=== "Dart"
+
+    ```dart title="my_heap.dart"
+    [class]{MaxHeap}-[func]{peek}
+    ```
+
 ### 元素入堆
 
 给定元素 `val` ，我们首先将其添加到堆底。添加之后，由于 val 可能大于堆中其他元素，堆的成立条件可能已被破坏。因此，**需要修复从插入节点到根节点的路径上的各个节点**，这个操作被称为「堆化 Heapify」。
@@ -504,6 +526,15 @@
 
 === "<6>"
     ![heap_push_step6](heap.assets/heap_push_step6.png)
+
+=== "<7>"
+    ![heap_push_step7](heap.assets/heap_push_step7.png)
+
+=== "<8>"
+    ![heap_push_step8](heap.assets/heap_push_step8.png)
+
+=== "<9>"
+    ![heap_push_step9](heap.assets/heap_push_step9.png)
 
 设节点总数为 $n$ ，则树的高度为 $O(\log n)$ 。由此可知，堆化操作的循环轮数最多为 $O(\log n)$ ，**元素入堆操作的时间复杂度为 $O(\log n)$** 。
 
@@ -582,6 +613,14 @@
 === "Zig"
 
     ```zig title="my_heap.zig"
+    [class]{MaxHeap}-[func]{push}
+
+    [class]{MaxHeap}-[func]{siftUp}
+    ```
+
+=== "Dart"
+
+    ```dart title="my_heap.dart"
     [class]{MaxHeap}-[func]{push}
 
     [class]{MaxHeap}-[func]{siftUp}
@@ -709,8 +748,16 @@
     [class]{MaxHeap}-[func]{siftDown}
     ```
 
+=== "Dart"
+
+    ```dart title="my_heap.dart"
+    [class]{MaxHeap}-[func]{pop}
+
+    [class]{MaxHeap}-[func]{siftDown}
+    ```
+
 ## 堆常见应用
 
 - **优先队列**：堆通常作为实现优先队列的首选数据结构，其入队和出队操作的时间复杂度均为 $O(\log n)$ ，而建队操作为 $O(n)$ ，这些操作都非常高效。
-- **堆排序**：给定一组数据，我们可以用它们建立一个堆，然后依次将所有元素弹出，从而得到一个有序序列。当然，堆排序的实现方法并不需要弹出元素，而是每轮将堆顶元素交换至数组尾部并缩小堆的长度。
+- **堆排序**：给定一组数据，我们可以用它们建立一个堆，然后不断地执行元素出堆操作，从而得到有序数据。然而，我们通常会使用一种更优雅的方式实现堆排序，详见后续的堆排序章节。
 - **获取最大的 $k$ 个元素**：这是一个经典的算法问题，同时也是一种典型应用，例如选择热度前 10 的新闻作为微博热搜，选取销量前 10 的商品等。

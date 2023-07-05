@@ -36,11 +36,9 @@ class MaxHeap {
 
   /* 交换元素 */
   void _swap(int i, int j) {
-    int a = _maxHeap[i];
-    int b = _maxHeap[j];
-    int tem = a;
-    _maxHeap[i] = b;
-    _maxHeap[j] = tem;
+    int tmp = _maxHeap[i];
+    _maxHeap[i] = _maxHeap[j];
+    _maxHeap[j] = tmp;
   }
 
   /* 获取堆大小 */
@@ -129,7 +127,7 @@ void main() {
 
   /* 获取堆顶元素 */
   int peek = maxHeap.peek();
-  print("\n堆顶元素为：$peek");
+  print("\n堆顶元素为 $peek");
 
   /* 元素入堆 */
   int val = 7;

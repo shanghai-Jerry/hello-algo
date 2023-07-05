@@ -16,7 +16,7 @@ class BinarySearchTree:
     def __init__(self, nums: list[int]) -> None:
         """构造方法"""
         nums.sort()
-        self.__root = self.build_tree(nums, 0, len(nums) - 1)
+        self.root = self.build_tree(nums, 0, len(nums) - 1)
 
     def build_tree(
         self, nums: list[int], start_index: int, end_index: int
@@ -26,7 +26,7 @@ class BinarySearchTree:
             return None
 
         # 将数组中间节点作为根节点
-        mid: int = (start_index + end_index) // 2
+        mid = (start_index + end_index) // 2
         root = TreeNode(nums[mid])
         # 递归建立左子树和右子树
         root.left = self.build_tree(
@@ -37,13 +37,9 @@ class BinarySearchTree:
         )
         return root
 
-    @property
-    def root(self) -> TreeNode | None:
-        return self.__root
-
     def search(self, num: int) -> TreeNode | None:
         """查找节点"""
-        cur: TreeNode | None = self.__root
+        cur: TreeNode | None = self.root
         # 循环查找，越过叶节点后跳出
         while cur is not None:
             # 目标节点在 cur 的右子树中
@@ -60,11 +56,11 @@ class BinarySearchTree:
     def insert(self, num: int) -> None:
         """插入节点"""
         # 若树为空，直接提前返回
-        if self.__root is None:
+        if self.root is None:
             return
 
         # 循环查找，越过叶节点后跳出
-        cur, pre = self.__root, None
+        cur, pre = self.root, None
         while cur is not None:
             # 找到重复节点，直接返回
             if cur.val == num:
@@ -77,7 +73,7 @@ class BinarySearchTree:
             else:
                 cur = cur.left
 
-        # 插入节点 val
+        # 插入节点
         node = TreeNode(num)
         if pre.val < num:
             pre.right = node
@@ -87,11 +83,11 @@ class BinarySearchTree:
     def remove(self, num: int) -> None:
         """删除节点"""
         # 若树为空，直接提前返回
-        if self.__root is None:
+        if self.root is None:
             return
 
         # 循环查找，越过叶节点后跳出
-        cur, pre = self.__root, None
+        cur, pre = self.root, None
         while cur is not None:
             # 找到待删除节点，跳出循环
             if cur.val == num:
@@ -112,10 +108,14 @@ class BinarySearchTree:
             # 当子节点数量 = 0 / 1 时， child = null / 该子节点
             child = cur.left or cur.right
             # 删除节点 cur
-            if pre.left == cur:
-                pre.left = child
+            if cur != self.root:
+                if pre.left == cur:
+                    pre.left = child
+                else:
+                    pre.right = child
             else:
-                pre.right = child
+                # 若删除节点为根节点，则重新指定根节点
+                self.root = child
         # 子节点数量 = 2
         else:
             # 获取中序遍历中 cur 的下一个节点
